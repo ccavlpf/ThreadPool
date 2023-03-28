@@ -7,8 +7,8 @@
 // unique function to avoid disambiguating the std::pow overload set
 int f(int x, int y) 
 {
-        std::cout << "f " << std::this_thread::get_id() << std::endl;
-
+    std::cout << "f " << std::this_thread::get_id() << std::endl;
+    std::this_thread::sleep_for(std::chrono::seconds(5));
     return std::pow(x,y); 
 }
  
@@ -52,10 +52,10 @@ void task_thread()
  
 int main()
 {
-        std::cout << "main " << std::this_thread::get_id() << std::endl;
-    task_lambda();
-    // task_bind();
-    //task_thread();
+    std::cout << "main " << std::this_thread::get_id() << std::endl;
+    //task_lambda();
+    //task_bind();
+    task_thread();
 
     auto fff = std::bind(f, 2, 11);
     
