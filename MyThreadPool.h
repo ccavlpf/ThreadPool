@@ -13,8 +13,8 @@ class ThreadPool{
 public:
     ThreadPool(size_t iCnt);
     template<class f, class... Args>
-    auto AddTask(f && fn, Args &&... args) 
-        -> std::future<typename std::result_of<f(Args...)>::type>;
+    auto AddTask(f && fn, Args &&... args);
+        //-> std::future<typename std::result_of<f(Args...)>::type>;
 
 private:
     std::vector<std::thread> workers;
@@ -27,7 +27,7 @@ private:
 
 template <class f, class... Args>
 inline auto ThreadPool::AddTask(f &&fn, Args &&...args) 
-    -> std::future<typename std::result_of<f(Args...)>::type>
+    //-> std::future<typename std::result_of<f(Args...)>::type>
 {
     using return_type = typename std::result_of<f(Args...)>::type;
 
