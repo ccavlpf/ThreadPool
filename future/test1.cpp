@@ -4,8 +4,7 @@
 #include <chrono>               // std::chrono::milliseconds
 
 // a non-optimized way of checking for prime numbers:
-bool
-is_prime(int x)
+bool is_prime(int x)
 {
     for (int i = 2; i < x; ++i)
         if (x % i == 0)
@@ -14,9 +13,13 @@ is_prime(int x)
 }
 
 
-int
-main()
+int main()
 {
+// ·std::launch::deferred
+// 当其他线程调用get()来访问共享状态时，将调用非异步行为
+// ·std::launch::async | std::launch::deferred
+// 默认行为。有了这个启动策略，它可以异步运行或不运行，这取决于系统的负载，但我们无法控制它。
+
     // call function asynchronously:
     std::future < bool > fut = std::async(is_prime, 444444443);
 
